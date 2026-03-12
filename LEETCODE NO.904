@@ -1,0 +1,18 @@
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        left=0
+        hashmap={}
+        maxlen=0
+        for right in range(len(fruits)):
+            hashmap[fruits[right]]=hashmap.get(fruits[right],0)+1
+
+            while len(hashmap)>2:
+                hashmap[fruits[left]]-=1
+
+                if hashmap[fruits[left]]==0:
+                    del hashmap[fruits[left]]
+
+                left+=1
+
+            maxlen=max(maxlen,right-left+1)
+        return maxlen
