@@ -1,0 +1,35 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        #iss code me linked list ka middle element find kar rhe haiu
+        slow=head
+        fast=head
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        # iss code me ab humlog second half ko reverse krenge 
+        prev = None
+        curr=slow
+
+        while curr:
+            temp=curr.next
+            curr.next=prev
+            prev=curr
+            curr=temp
+        #ab hum log second half ko first half se compare krenge
+        left = head
+        right=prev
+        while right:
+            if left.val!=right.val:
+                return False
+            left = left.next
+            right= right.next
+        return True
+
+        
+
+        
